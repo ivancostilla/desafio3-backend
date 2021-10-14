@@ -82,7 +82,7 @@ const server = app.listen(PORT, () => {
 });
 server.on("error", (error) => console.log(error));
 
-const file = "productos.txt";
+const file = "./productos.txt";
 
 const productos = new Contenedor(file);
 
