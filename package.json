@@ -1,0 +1,25 @@
+{
+  "name": "desafio3-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivancostilla/desafio3-backend.git"
+  },
+  "author": "ivan costilla",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ivancostilla/desafio3-backend/issues"
+  },
+  "homepage": "https://github.com/ivancostilla/desafio3-backend#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.13"
+  }
+}
