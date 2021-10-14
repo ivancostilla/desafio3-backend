@@ -1,6 +1,6 @@
 
 const express = require("express");
-const fs = require('fs/promises');
+const fs = require('fs');
 const app = express();
 const PORT = 8080;
 class Contenedor {
@@ -17,7 +17,7 @@ class Contenedor {
 				thumbnail: producto.thumbnail,
 				id: this.content.length + 1,
 			});
-			await fs.writeFile(this.nombreArchivo, JSON.stringify(this.content, null, 2));
+			await fs.promises.writeFile(this.nombreArchivo, JSON.stringify(this.content, null, 2));
             return
 		} catch (error) {
 			console.log('No se pudo agregar un producto');
@@ -27,7 +27,7 @@ class Contenedor {
 
     async getById(id){
 		try {
-			const data = await fs.readFile(this.nombreArchivo, 'utf-8');
+			const data = await fs.promises.readFile(this.nombreArchivo, 'utf-8');
             const dataParse = JSON.parse(data)
 			const producto = dataParse.find(prod => prod.id === id);
 			if(producto){
@@ -48,13 +48,13 @@ class Contenedor {
 	//borrar por id
 	async deleteById(id){
 		try {
-			const oldData = await fs.readFile(this.nombreArchivo, 'utf-8');
+			const oldData = await fs.promises.readFile(this.nombreArchivo, 'utf-8');
 			const dataParse = JSON.parse(oldData);
 			const producto = dataParse.find(prod => prod.id === id);
 			if(producto.id){
 			const newData = dataParse.filter(prod => prod.id !== id)
 			await fs.writeFile(this.nombreArchivo, JSON.stringify(newData, null, 2));
-			const data = await fs.readFile(this.nombreArchivo, 'utf-8');
+			const data = await fs.promises.readFile(this.nombreArchivo, 'utf-8');
 			 return data
 			} else
 			 if (!producto.id){
@@ -68,7 +68,7 @@ class Contenedor {
 
 	getAll() {
 		try {
-			const data = fs.readFile(this.nombreArchivo, 'UTF-8');
+			const data = fs.promises.readFile(this.nombreArchivo, 'UTF-8');
             return data
 		} catch (error) {
 			console.log('No se pudo leer el archivo');
